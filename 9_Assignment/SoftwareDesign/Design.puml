@@ -1,0 +1,88 @@
+@startuml
+namespace PretendUnity {
+    class MonoBehaviour {
+        + void : Start()
+        + void : Update()
+    }
+
+    class Transform {
+        - Vector3 position
+        + Vector3 : GetPosition()
+        + void : AddForce(Vector3 force)
+    }
+
+    class Vector3 {
+        + float X
+        + float Y
+        + float Z
+        + Vector3(float x, float y, float z)
+    }
+}
+abstract Animal {
+    + Transform transform 
+    + void : PlayAnimalSound() 
+}
+
+class Dog {
+   
+}
+
+class Pig {
+   
+}
+
+abstract FriendlyAnimal {
+
+}
+
+abstract HostileAnimal {
+
+}
+
+class Lion {
+
+}
+
+Class Alligator {
+
+}
+
+Class HostileAnimalLauncher {
+    void : Launch(HostileAnimal animal)
+}
+
+Class Farm {
+    + List<FriendlyAnimal> Animals;
+}
+
+interface FriendlyAnimalInterface {
+    void : Pet()
+    void : Feed()
+}
+
+interface HostileAnimalInterface {
+    void : Fight()
+    bool : Scare()
+    void : Launch(Vector3 direction)
+}
+
+Farm --> FriendlyAnimal : contains
+
+FriendlyAnimal -up-|> Animal
+FriendlyAnimal -up-|> FriendlyAnimalInterface
+Dog -up-|> FriendlyAnimal
+Pig -up-|> FriendlyAnimal
+
+HostileAnimalLauncher --> HostileAnimal : Launches
+
+HostileAnimal -up-|> Animal
+HostileAnimal -up-|> HostileAnimalInterface
+Lion -up-|> HostileAnimal
+Alligator -up-|> HostileAnimal
+
+Animal -up-|> PretendUnity.MonoBehaviour
+Animal -up-> PretendUnity.Transform
+PretendUnity.Transform -right-> PretendUnity.Vector3
+
+
+@enduml
