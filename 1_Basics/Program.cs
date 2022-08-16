@@ -1,4 +1,19 @@
-﻿#region Assignment; Write your own story
+﻿#region 
+//The "#region" can be used to 'collapse' areas of code so you can focus on the key areas
+//Comments can be done in a couple different ways, after // and multiline between /* comment */
+
+
+/*
+multi
+line
+comment
+*/
+
+//All of these functionalities is for the programmers, the compiler deletes them when creating the executable (.exe)
+//Programmers can use them to document their code and help future programmers understand their thinking.
+#endregion
+
+#region Assignment; Write your own story
 /* Todays assignment
 *   Run this program
 *   Read and understand this programs source code
@@ -21,13 +36,16 @@
 Console.WriteLine("What is your name?");
 
 //<Type> <Name> = <Value> ;
-string myString = "This is how to define a string variable!";
-
-//Reading a string from the console
-myString = Console.ReadLine();
+string rawName = Console.ReadLine();
+while (rawName == ""){
+    Console.WriteLine("Please enter your name to contenue");
+    rawName = Console.ReadLine();
+}
+string firstLetterName = rawName.Substring(0, 1).ToUpper();
+string yourName = firstLetterName + rawName.Substring(1);
 
 //Writing it back to the console
-Console.WriteLine("Aaah, welcome " + myString + ", nice to meet you!");
+Console.WriteLine("Aaah, welcome " + yourName + ", nice to meet you!");
 #endregion
 
 #region Data types
@@ -47,10 +65,13 @@ Console.WriteLine("Do you want to learn about the simplest data types?");
 * https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/built-in-types
 */
 
-string answer = Console.ReadLine();
+string rawAnswer = Console.ReadLine();
+string firstLetter = rawAnswer.Substring(0, 1).ToUpper();
+string remainingLetters = rawAnswer.Substring(1).ToLower();
+string answer = firstLetter + remainingLetters;
 
 bool LearnAboutDataTypes = false;
-if(answer == "yes"){
+if(answer == "Yes"){
     LearnAboutDataTypes = true;
 }
 
@@ -66,6 +87,11 @@ if(LearnAboutDataTypes == true){
     Console.WriteLine("It is used to store whole numbers, like 1,2,3,4 and so on.");
     Console.WriteLine("Try inserting an integer now:");
     string inputFromConsole = Console.ReadLine();
+
+    while (inputFromConsole == "" || inputFromConsole.Contains(".") || inputFromConsole.Contains(",")){
+        Console.WriteLine("Please enter an integer");
+        inputFromConsole = Console.ReadLine();
+    }
     int number = int.Parse(inputFromConsole);
     
     Console.WriteLine("I have now converted a text string into an integer!");
@@ -91,6 +117,18 @@ if(LearnAboutDataTypes == true){
     Console.WriteLine("...");
     Console.ReadLine();
 }
-#endregion
-Console.WriteLine("...The end...");
+Console.WriteLine("Fuck off then...");
 Console.ReadLine(); //Stops program from exiting until we press a key
+
+#endregion
+
+
+/* Teachers corner
+
+* Operators; +, -, /, *, %, ++, --, *=, +=, -=
+
+* Casting
+int.Parse()
+Convert.ToInt32()
+(int)
+*/
