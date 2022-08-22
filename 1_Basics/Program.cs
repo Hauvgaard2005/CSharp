@@ -38,7 +38,7 @@ Console.WriteLine("What is your name?");
 //<Type> <Name> = <Value> ;
 string rawName = Console.ReadLine();
 while (rawName == ""){
-    Console.WriteLine("Please enter your name to contenue");
+    Console.WriteLine("Please enter your name to continue");
     rawName = Console.ReadLine();
 }
 string firstLetterName = rawName.Substring(0, 1).ToUpper();
@@ -66,12 +66,15 @@ Console.WriteLine("Do you want to learn about the simplest data types?");
 */
 
 string rawAnswer = Console.ReadLine();
-string firstLetter = rawAnswer.Substring(0, 1).ToUpper();
-string remainingLetters = rawAnswer.Substring(1).ToLower();
-string answer = firstLetter + remainingLetters;
-
+string answer = "";
+if (rawAnswer == ""){
+    Console.WriteLine("fucking idiot do as i say");
+}
+else {
+    answer = rawAnswer.ToLower();
+}
 bool LearnAboutDataTypes = false;
-if(answer == "Yes"){
+if(answer.Equals("yes")){
     LearnAboutDataTypes = true;
 }
 
@@ -85,18 +88,28 @@ if(LearnAboutDataTypes == true){
     
     Console.WriteLine("Now... The next data type we are gonna talk about is the integer, called an 'int'");
     Console.WriteLine("It is used to store whole numbers, like 1,2,3,4 and so on.");
-    Console.WriteLine("Try inserting an integer now:");
-    string inputFromConsole = Console.ReadLine();
-
-    while (inputFromConsole == "" || inputFromConsole.Contains(".") || inputFromConsole.Contains(",")){
-        Console.WriteLine("Please enter an integer");
-        inputFromConsole = Console.ReadLine();
-    }
-    int number = int.Parse(inputFromConsole);
+/*   
+    int number = 0;
+    bool hasValue = false;
+    do {
+        try {
+            Console.WriteLine("Try inserting an integer now:");
+            string inputFromConsole = Console.ReadLine(); 
+            number = int.Parse(inputFromConsole);
+            hasValue = true;
+        } catch (Exception e){
+            Console.WriteLine("The input was not a valid number!");
+        }
+    } while(!hasValue);
+*/
+    int number;
+    string? inputFromConsole;
     
+    Console.WriteLine("Try inserting an integer now: "); 
+    do inputFromConsole = Console.ReadLine(); while(!int.TryParse(inputFromConsole, out number));
+
     Console.WriteLine("I have now converted a text string into an integer!");
-    number = number + 1;
-    //number++;
+    number++;
     //number += 1;
     Console.WriteLine("We can now do math operations on it, and voila, your number + 1 is equal to = " + number);
     Console.WriteLine("...");
@@ -118,15 +131,13 @@ if(LearnAboutDataTypes == true){
     Console.ReadLine();
 }
 Console.WriteLine("Fuck off then...");
-Console.ReadLine(); //Stops program from exiting until we press a key
+Console.ReadLine();
 
 #endregion
-
-
 /* Teachers corner
-
+*
 * Operators; +, -, /, *, %, ++, --, *=, +=, -=
-
+*
 * Casting
 int.Parse()
 Convert.ToInt32()
